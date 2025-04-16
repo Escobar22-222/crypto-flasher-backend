@@ -18,11 +18,18 @@ mongoose.connect(MONGO_URI, {
 }).then(() => console.log('✅ MongoDB connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
+// Existing test route
 app.get('/api/test', (req, res) => {
     res.json({ message: "Backend is working ✅" });
+});
+
+// 👇 Add this to handle the root URL ("/")
+app.get('/', (req, res) => {
+    res.send('🚀 Welcome to Crypto Flasher Backend API');
+    // Or if you prefer a 404:
+    // res.status(404).send('Not Found');
 });
 
 app.listen(PORT, () => {
     console.log(`🟢 Server running on port ${PORT}`);
 });
-
